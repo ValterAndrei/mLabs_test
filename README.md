@@ -20,17 +20,17 @@ bundle
 rails db:setup
 ```
 
-4. Tests
+5. Tests
 ```
 rspec
 ```
 
-5. Linter/Formatter
+6. Linter/Formatter
 ```
 rubocop
 ```
 
-6. Run project
+7. Run project
 ```
 docker-compose up web
 ```
