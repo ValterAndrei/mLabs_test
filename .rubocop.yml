@@ -1,0 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'config/environments/production.rb'
+    - 'config/puma.rb'
+    - 'config/spring.rb'
+    - 'config/application.rb'
+
+Style/Documentation:
+  Exclude:
+    - '**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  EnforcedStyle: use_perl_names
