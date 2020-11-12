@@ -6,6 +6,6 @@ class PlateValidator
   end
 
   def run
-    !!plate.match(/[a-zA-Z]{3}[-]\d{4}/)
+    plate && !!plate.match(/[a-zA-Z]{3}[-]\d{4}/)
   end
 end
