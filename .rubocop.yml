@@ -10,6 +10,7 @@ AllCops:
     - 'config/spring.rb'
     - 'config/application.rb'
     - 'vendor/bundle/**/*'
+    - 'db/*'
 
 Style/Documentation:
   Exclude:
