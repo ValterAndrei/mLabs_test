@@ -9,7 +9,7 @@ RSpec.describe PlateValidator do
     end
 
     context 'when the plate is correctly format' do
-      let(:plate) { 'QBT-9377' }
+      let(:plate) { FFaker::String.from_regexp(/[a-zA-Z]{3}-\d{4}/) }
 
       it { expect(described_class.new(plate).run).to be_truthy }
     end
