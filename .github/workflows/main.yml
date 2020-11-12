@@ -60,9 +60,7 @@ jobs:
         name: coverage-report
         path: coverage
 
-    - name: Run lint
-      uses: samuelmeuli/lint-action@v1
-      with:
-        github_token: ${{ secrets.github_token }}
-        rubocop: true
-        rubocop_command_prefix: bundle exec
+    - name: RuboCop Linter Action
+      uses: andrewmcodes/rubocop-linter-action@v3.3.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
