@@ -9,6 +9,7 @@ AllCops:
     - 'config/puma.rb'
     - 'config/spring.rb'
     - 'config/application.rb'
+    - 'vendor/bundle/**/*'
 
 Style/Documentation:
   Exclude:
