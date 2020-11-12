@@ -1,5 +1,7 @@
 ## mLabs
 
+![Rails Tests](https://github.com/ValterAndrei/mLabs_test/workflows/Rails%20Tests/badge.svg)
+
 1. Build image
 ```
 docker-compose build
