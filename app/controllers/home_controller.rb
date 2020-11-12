@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
-    render json: 'Hello World', status: :ok
+    validator = PlateValidator.new('bqf-9355').run
+
+    render json: validator, status: :ok
   end
 end
