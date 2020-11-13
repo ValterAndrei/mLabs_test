@@ -1,20 +1,18 @@
-inherit_from: .rubocop_todo.yml
-
 AllCops:
+  NewCops: disable
   Exclude:
-    - 'bin/**/*'
-    - 'spec/spec_helper.rb'
-    - 'spec/rails_helper.rb'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-    - 'config/spring.rb'
-    - 'config/application.rb'
-    - 'vendor/bundle/**/*'
-    - 'db/*'
+    - bin/**/*
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - config/environments/production.rb
+    - config/puma.rb
+    - config/spring.rb
+    - config/application.rb
+    - vendor/bundle/**/*
+    - db/*
 
 Style/Documentation:
-  Exclude:
-    - '**/*'
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
