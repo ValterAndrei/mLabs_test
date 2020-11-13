@@ -1,2 +1,0 @@
-class Parking < ApplicationRecord
-end

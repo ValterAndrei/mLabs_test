@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :parking do
+  factory :vehicle do
     plate { 'MyString' }
   end
 end
