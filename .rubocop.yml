@@ -19,3 +19,7 @@ Style/FrozenStringLiteralComment:
 
 Style/SpecialGlobalVars:
   EnforcedStyle: use_perl_names
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

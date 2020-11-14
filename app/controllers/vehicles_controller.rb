@@ -6,7 +6,7 @@ class VehiclesController < ApplicationController
     if @vehicle
       json_response(@vehicle)
     else
-      json_response({ message: 'Plate not found' })
+      json_response({ message: 'Vehicle not found' })
     end
   end
 

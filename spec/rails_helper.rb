@@ -6,6 +6,7 @@ require 'simplecov'
 SimpleCov.start do
   add_filter [
     'app/controllers/application_controller.rb',
+    'app/controllers/concerns/exception_handler.rb',
     'config',
     'helper',
     'lib',
