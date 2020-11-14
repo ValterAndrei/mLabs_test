@@ -7,7 +7,6 @@ class Reservation < ApplicationRecord
   validates :paid, :left, inclusion: [true, false]
 
   validate :can_reservate?, on: :create
-  validate :can_paid?,      on: :update
   validate :can_left?,      on: :update
 
   private
@@ -16,13 +15,6 @@ class Reservation < ApplicationRecord
     return unless vehicle.reservations.exists?(left: false)
 
     errors.add(:vehicle, 'vehicle still in the parking lot')
-  end
-
-  def can_paid?
-    return if left
-    return if vehicle.reservations.exists?(paid: false)
-
-    errors.add(:paid, 'has already paid')
   end
 
   def can_left?
