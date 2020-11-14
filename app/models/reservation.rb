@@ -1,6 +1,8 @@
 class Reservation < ApplicationRecord
   include Codenable
 
-  validates :checkin, :checkout, presence: true
+  belongs_to :vehicle
+
+  validates :checkin, presence: true
   validates :paid, :left, inclusion: [true, false]
 end
