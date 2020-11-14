@@ -9,6 +9,10 @@ class Reservation < ApplicationRecord
   validate :can_reservate?, on: :create
   validate :can_left?,      on: :update
 
+  def as_json(_options = {})
+    super(only: %i[code])
+  end
+
   private
 
   def can_reservate?
@@ -19,5 +23,11 @@ class Reservation < ApplicationRecord
 
   def can_left?
     errors.add(:left, 'payment not yet made') unless paid
+  end
+
+  def time
+    self.checkout ||= Time.zone.now
+
+    ActiveSupport::Duration.build(checkout - checkin).inspect
   end
 end

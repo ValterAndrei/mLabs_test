@@ -3,12 +3,16 @@ class VehiclesController < ApplicationController
   before_action :set_reservation, only: %i[pay out]
 
   def show
-    json_response(@vehicle)
+    if @vehicle
+      json_response(@vehicle)
+    else
+      json_response({ message: 'Plate not found' })
+    end
   end
 
   def create
-    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate])
-                      .reservations.build(checkin: Time.now)
+    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate].upcase)
+                      .reservations.build(checkin: Time.zone.now)
 
     if @vehicle.save
       json_response(@vehicle, :created)
@@ -18,6 +22,8 @@ class VehiclesController < ApplicationController
   end
 
   def pay
+    return json_response({ message: 'Reservation not fount' }) unless @reservation
+
     @reservation.paid = true
 
     if @reservation.save
@@ -28,7 +34,9 @@ class VehiclesController < ApplicationController
   end
 
   def out
-    @reservation.checkout = Time.now
+    return json_response({ message: 'Reservation not fount' }) unless @reservation
+
+    @reservation.checkout = Time.zone.now
     @reservation.left = true
 
     if @reservation.save
@@ -41,7 +49,7 @@ class VehiclesController < ApplicationController
   private
 
   def set_vehicle
-    @vehicle = Vehicle.find_by(plate: params[:plate])
+    @vehicle = Vehicle.find_by(plate: params[:plate].upcase)
   end
 
   def set_reservation
