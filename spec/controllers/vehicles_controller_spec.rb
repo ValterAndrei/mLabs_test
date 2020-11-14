@@ -1,6 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe VehiclesController, type: :request do
+  describe 'GET #index' do
+    let!(:vehicle) { create(:vehicle) }
+
+    before { get '/' }
+
+    it 'returns http success' do
+      expect(response).to be_successful
+    end
+
+    it 'returns vehicles info' do
+      expect(response.body).not_to be_empty
+      expect(JSON.parse(response.body)).to eq([{ 'plate' => vehicle.plate, 'reservations' => [] }])
+    end
+  end
+
   describe 'GET #show' do
     context 'when vehicle exists' do
       let!(:vehicle) { create(:vehicle) }

@@ -13,6 +13,12 @@ class Reservation < ApplicationRecord
     super(only: %i[code])
   end
 
+  def time
+    self.checkout ||= Time.zone.now
+
+    ActiveSupport::Duration.build(checkout - checkin).inspect
+  end
+
   private
 
   def can_reservate?
@@ -23,11 +29,5 @@ class Reservation < ApplicationRecord
 
   def can_left?
     errors.add(:left, 'payment not yet made') unless paid
-  end
-
-  def time
-    self.checkout ||= Time.zone.now
-
-    ActiveSupport::Duration.build(checkout - checkin).inspect
   end
 end

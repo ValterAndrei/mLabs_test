@@ -1,5 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'check associations' do
+    it { is_expected.to have_many(:reservations).dependent(:destroy) }
+  end
+
+  describe 'check types' do
+    it { is_expected.to have_db_column(:plate).of_type(:string) }
+  end
+
+  describe 'check errors' do
+    let(:vehicle) { build_stubbed(:vehicle, plate: nil) }
+
+    it 'must return error' do
+      vehicle.validate
+
+      expect(vehicle.errors.full_messages).to include('Plate with invalid format')
+    end
+  end
 end

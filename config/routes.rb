@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get '/', to: 'home#index'
-
+  get '/',                  to: 'vehicles#index'
   post 'parking',           to: 'vehicles#create'
   get  'parking/:plate',    to: 'vehicles#show'
   put  'parking/:code/pay', to: 'vehicles#pay'

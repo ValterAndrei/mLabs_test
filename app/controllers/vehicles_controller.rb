@@ -2,6 +2,12 @@ class VehiclesController < ApplicationController
   before_action :set_vehicle, only: %i[show]
   before_action :set_reservation, only: %i[pay out]
 
+  def index
+    @vehicles = Vehicle.order(:created_at)
+
+    json_response(@vehicles)
+  end
+
   def show
     if @vehicle
       json_response(@vehicle)
