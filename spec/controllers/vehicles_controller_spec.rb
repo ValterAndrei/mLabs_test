@@ -35,8 +35,8 @@ RSpec.describe VehiclesController, type: :request do
     context 'when vehicle not exists' do
       before { get '/parking/xxx' }
 
-      it 'returns http success' do
-        expect(response).to be_successful
+      it 'returns http not_found' do
+        expect(response).to be_not_found
       end
 
       it 'returns alert message' do
@@ -54,10 +54,10 @@ RSpec.describe VehiclesController, type: :request do
         expect { subject }.to change(Vehicle, :count).by(0).and(change(Reservation, :count).by(0))
       end
 
-      it 'returns http success' do
+      it 'returns http unprocessable' do
         subject
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to be_unprocessable
       end
 
       it 'returns alert message' do
@@ -122,10 +122,10 @@ RSpec.describe VehiclesController, type: :request do
         expect { subject }.to change(Vehicle, :count).by(0).and(change(Reservation, :count).by(0))
       end
 
-      it 'returns http success' do
+      it 'returns http unprocessable' do
         subject
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to be_unprocessable
       end
 
       it 'returns alert message' do
@@ -141,10 +141,10 @@ RSpec.describe VehiclesController, type: :request do
     context 'when vehicle don\'t exists' do
       subject { put '/parking/XXX/pay' }
 
-      it 'returns http success' do
+      it 'returns http not_found' do
         subject
 
-        expect(response).to be_successful
+        expect(response).to be_not_found
       end
 
       it 'returns alert message' do
@@ -183,10 +183,10 @@ RSpec.describe VehiclesController, type: :request do
 
       subject { put "/parking/#{reservation.code}/pay" }
 
-      it 'returns http success' do
+      it 'returns http unprocessable' do
         subject
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to be_unprocessable
       end
 
       it 'returns reservation info' do
@@ -202,10 +202,10 @@ RSpec.describe VehiclesController, type: :request do
     context 'when vehicle don\'t exists' do
       subject { put '/parking/XXX/out' }
 
-      it 'returns http success' do
+      it 'returns http not_found' do
         subject
 
-        expect(response).to be_successful
+        expect(response).to be_not_found
       end
 
       it 'returns alert message' do
@@ -222,10 +222,10 @@ RSpec.describe VehiclesController, type: :request do
 
       subject { put "/parking/#{reservation.code}/out" }
 
-      it 'returns http success' do
+      it 'returns http unprocessable' do
         subject
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to be_unprocessable
       end
 
       it 'returns alert message' do

@@ -12,7 +12,7 @@ class VehiclesController < ApplicationController
     if @vehicle
       json_response(@vehicle)
     else
-      json_response({ message: 'Vehicle not found' })
+      vehicle_not_found
     end
   end
 
@@ -28,7 +28,7 @@ class VehiclesController < ApplicationController
   end
 
   def pay
-    return json_response({ message: 'Reservation not fount' }) unless @reservation
+    return reservation_not_found unless @reservation
 
     @reservation.paid = true
 
@@ -40,7 +40,7 @@ class VehiclesController < ApplicationController
   end
 
   def out
-    return json_response({ message: 'Reservation not fount' }) unless @reservation
+    return reservation_not_found unless @reservation
 
     @reservation.checkout = Time.zone.now
     @reservation.left = true
@@ -60,6 +60,14 @@ class VehiclesController < ApplicationController
 
   def set_reservation
     @reservation = Reservation.find_by(code: params[:code])
+  end
+
+  def reservation_not_found
+    json_response({ message: 'Reservation not fount' }, :not_found)
+  end
+
+  def vehicle_not_found
+    json_response({ message: 'Vehicle not found' }, :not_found)
   end
 
   def vehicle_params

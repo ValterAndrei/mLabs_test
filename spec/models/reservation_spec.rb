@@ -14,27 +14,12 @@ RSpec.describe Reservation, type: :model do
   end
 
   describe '.time' do
-    let!(:reservation) { create(:reservation, checkout: time_now) }
+    let!(:reservation) { create(:reservation, checkout: Time.zone.now) }
 
-    context 'when reservation with checkout' do
-      let(:time_now) { Time.zone.now + 5.minutes }
-
-      it 'return correct time' do
-        expect(reservation.time).to eq(
-          ActiveSupport::Duration.build(reservation.checkout - reservation.checkin).inspect
-        )
-      end
-    end
-
-    context 'when reservation without checkout' do
-      let(:checkout) { nil }
-      let(:time_now) { Time.zone.now }
-
-      it 'return correct time' do
-        expect(reservation.time).to eq(
-          ActiveSupport::Duration.build(time_now - reservation.checkin).inspect
-        )
-      end
+    it 'return correct time' do
+      expect(reservation.time).to eq(
+        ActiveSupport::Duration.build(reservation.checkout - reservation.checkin).inspect
+      )
     end
   end
 end
