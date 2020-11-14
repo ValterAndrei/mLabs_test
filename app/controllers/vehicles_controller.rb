@@ -6,11 +6,10 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.new(vehicle_params)
+    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate])
+                      .reservations.build(checkin: Time.now)
 
-    if Vehicle.exists?(plate: @vehicle.plate)
-      json_response(@vehicle.generate_reservation, :created)
-    elsif @vehicle.save
+    if @vehicle.save
       json_response(@vehicle, :created)
     else
       json_response(@vehicle.errors.full_messages, :unprocessable_entity)
