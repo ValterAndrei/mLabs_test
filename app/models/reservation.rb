@@ -24,10 +24,10 @@ class Reservation < ApplicationRecord
   def can_reservate?
     return unless vehicle.reservations.exists?(left: false)
 
-    errors.add(:vehicle, 'vehicle still in the parking lot')
+    errors.add(:vehicle, 'still in the parking lot')
   end
 
   def can_left?
-    errors.add(:left, 'payment not yet made') unless paid
+    errors.add(:reservation, 'payment not yet made') unless paid
   end
 end

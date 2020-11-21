@@ -9,7 +9,7 @@ RSpec.describe Vehicle, type: :model do
     it { is_expected.to have_db_column(:plate).of_type(:string) }
   end
 
-  describe 'check errors' do
+  describe 'check validations' do
     let(:vehicle) { build_stubbed(:vehicle, plate: nil) }
 
     it 'must return error' do

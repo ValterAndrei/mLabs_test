@@ -22,4 +22,30 @@ RSpec.describe Reservation, type: :model do
       )
     end
   end
+
+  describe 'check validations' do
+    context 'when the vehicle is still parked' do
+      let(:vehicle) { create(:vehicle) }
+      let(:reservation) { create(:reservation, vehicle: vehicle) }
+      let(:new_reservation) { build(:reservation, vehicle: vehicle) }
+
+      it 'must return error' do
+        new_reservation.validate
+
+        expect(new_reservation.errors.full_messages).to include('Vehicle still in the parking lot')
+      end
+    end
+
+    context 'when the payment not yet made' do
+      let(:vehicle) { create(:vehicle) }
+      let(:reservation) { create(:reservation, vehicle: vehicle) }
+
+      it 'must return error' do
+        reservation.left = true
+        reservation.validate
+
+        expect(reservation.errors.full_messages).to include('Reservation payment not yet made')
+      end
+    end
+  end
 end
