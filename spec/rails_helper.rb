@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'simplecov'
 
-# This ensures that the coverage is above 80% and any changes in the
+# This ensures that the coverage is above 90% and any changes in the
 # future must not drop the coverage by more than 2%
 SimpleCov.start do
   add_filter [
@@ -14,8 +14,7 @@ SimpleCov.start do
   ]
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'
-  add_group 'Use Cases', 'app/use_cases'
-  minimum_coverage 80
+  minimum_coverage 90
   maximum_coverage_drop 2
 end
 
