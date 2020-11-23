@@ -15,7 +15,7 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate].upcase)
+    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate])
                       .reservations.build(checkin: Time.zone.now)
 
     if @vehicle.save
@@ -49,7 +49,7 @@ class VehiclesController < ApplicationController
   private
 
   def set_vehicle
-    @vehicle = Vehicle.find_by(plate: params[:plate].upcase)
+    @vehicle = Vehicle.find_by(plate: params[:plate])
   end
 
   def set_reservation
