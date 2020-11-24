@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :reservation do
     vehicle
-    checkin  { Time.new }
+    checkin  { Time.zone.now }
     checkout { nil }
     paid     { false }
     left     { false }

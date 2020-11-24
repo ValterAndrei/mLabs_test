@@ -14,7 +14,7 @@ RSpec.describe Reservation, type: :model do
   end
 
   describe '.time' do
-    let!(:reservation) { create(:reservation, checkout: Time.zone.now) }
+    let(:reservation) { build_stubbed(:reservation, checkout: Time.zone.now) }
 
     it 'return correct time' do
       expect(reservation.time).to eq(

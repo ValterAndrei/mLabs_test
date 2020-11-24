@@ -37,7 +37,7 @@ class VehiclesController < ApplicationController
 
   def out
     @reservation.checkout = Time.zone.now
-    @reservation.left = true
+    @reservation.left     = true
 
     if @reservation.save
       json_response(@reservation)
