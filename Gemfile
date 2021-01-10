@@ -24,7 +24,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.2'
-  gem 'rubocop', '~> 1.3', require: false
+  gem 'rubocop', '~> 1.8', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
