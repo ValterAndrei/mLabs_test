@@ -40,11 +40,25 @@ docker-compose up web
 
 ---
 
-### Run with debug
+### Run with debug in VSCode
 
-1. Up the project
+1. Install extension _Ruby_
+```
+ext install rebornix.Ruby
+```
+
+2. Up the project
 ```
 docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
 ```
 
-2. Press F5 to execute _launch.json_
+3. Press F5 to execute _launch.json_
+
+---
+
+### Run with byebug
+
+1. Up the project
+```
+docker-compose run --service-ports web
+```

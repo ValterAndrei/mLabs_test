@@ -7,7 +7,7 @@
       "request": "attach",
       "remoteHost": "localhost",
       "remotePort": "9000",
-      "remoteWorkspaceRoot": "/usr/src/app", //"${workspaceRoot}"
+      "remoteWorkspaceRoot": "/usr/src/app"
     }
   ]
 }
