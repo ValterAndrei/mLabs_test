@@ -37,3 +37,14 @@ rubocop
 ```
 docker-compose up web
 ```
+
+---
+
+### Run with debug
+
+1. Up the project
+```
+docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
+```
+
+2. Press F5 to execute _launch.json_
