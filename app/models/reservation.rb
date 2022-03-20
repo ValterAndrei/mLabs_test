@@ -19,6 +19,10 @@ class Reservation < ApplicationRecord
     ActiveSupport::Duration.build(checkout - checkin).inspect
   end
 
+  def plate
+    vehicle.plate
+  end
+
   private
 
   def can_reservate?
