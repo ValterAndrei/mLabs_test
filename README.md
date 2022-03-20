@@ -38,6 +38,11 @@ rubocop
 docker-compose up web
 ```
 
+8. Restore production database
+```
+$ ./import_db_from_heroku.sh
+```
+
 ---
 
 ### Run with debug in VSCode
