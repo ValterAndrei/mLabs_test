@@ -10,7 +10,7 @@ class Vehicle < ApplicationRecord
       only: %i[plate],
       include: {
         reservations: {
-          only: %i[code paid left],
+          only: %i[code paid left created_at],
           methods: %i[time]
         }
       }
