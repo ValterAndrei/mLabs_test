@@ -13,14 +13,22 @@ class Reservation < ApplicationRecord
     super(only: %i[code])
   end
 
-  def time
+  def time # rubocop:disable Metrics/MethodLength
     self.checkout ||= Time.zone.now
 
-    ActiveSupport::Duration.build(checkout - checkin).inspect
-  end
+    duration = ActiveSupport::Duration
+               .build(checkout - checkin)
+               .parts
+               .slice(:days, :hours, :minutes)
 
-  def plate
-    vehicle.plate
+    case duration
+    in { days: Integer, hours: Integer, minutes: Integer }
+      "#{duration[:days]} days, #{duration[:hours]} hours and #{duration[:minutes]} minutes"
+    in { hours: Integer, minutes: Integer }
+      "#{duration[:hours]} hours and #{duration[:minutes]} minutes"
+    in { minutes: Integer }
+      "#{duration[:minutes]} minutes"
+    end
   end
 
   private
