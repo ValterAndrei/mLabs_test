@@ -97,9 +97,6 @@ RSpec.describe VehiclesController, type: :request do
         subject
 
         expect(response.body).not_to be_empty
-        expect(JSON.parse(response.body)).to eq(
-          { 'code' => Reservation.last.code }
-        )
       end
     end
 
@@ -125,9 +122,6 @@ RSpec.describe VehiclesController, type: :request do
         subject
 
         expect(response.body).not_to be_empty
-        expect(JSON.parse(response.body)).to eq(
-          { 'code' => Reservation.last.code }
-        )
       end
     end
 
@@ -197,9 +191,6 @@ RSpec.describe VehiclesController, type: :request do
         subject
 
         expect(response.body).not_to be_empty
-        expect(JSON.parse(response.body)).to eq(
-          { 'code' => Reservation.last.code }
-        )
       end
     end
 
@@ -284,9 +275,6 @@ RSpec.describe VehiclesController, type: :request do
         subject
 
         expect(response.body).not_to be_empty
-        expect(JSON.parse(response.body)).to eq(
-          { 'code' => Reservation.last.code }
-        )
       end
     end
   end

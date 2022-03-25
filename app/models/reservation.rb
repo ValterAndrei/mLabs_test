@@ -10,7 +10,14 @@ class Reservation < ApplicationRecord
   validate :can_left?,      on: :update
 
   def as_json(_options = {})
-    super(only: %i[code])
+    super(
+      only: %i[code],
+      include: {
+        vehicle: {
+          only: %i[plate]
+        }
+      }
+    )
   end
 
   def time # rubocop:disable Metrics/MethodLength
