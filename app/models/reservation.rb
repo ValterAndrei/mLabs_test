@@ -9,15 +9,10 @@ class Reservation < ApplicationRecord
   validate :can_reservate?, on: :create
   validate :can_left?,      on: :update
 
+  delegate :plate, to: :vehicle
+
   def as_json(_options = {})
-    super(
-      only: %i[code],
-      include: {
-        vehicle: {
-          only: %i[plate]
-        }
-      }
-    )
+    super(only: %i[code])
   end
 
   def time # rubocop:disable Metrics/MethodLength
@@ -35,6 +30,8 @@ class Reservation < ApplicationRecord
       "#{duration[:hours]} hours and #{duration[:minutes]} minutes"
     in { minutes: Integer }
       "#{duration[:minutes]} minutes"
+    else
+      nil
     end
   end
 
