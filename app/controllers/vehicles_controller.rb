@@ -1,11 +1,11 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle,       only: %i[show]
+  before_action :set_vehicle,       only: %i[show destroy]
   before_action :set_reservation,   only: %i[pay out]
   before_action :check_vehicle,     only: %i[show]
   before_action :check_reservation, only: %i[pay out]
 
   def index
-    @vehicles = Vehicle.order(:created_at)
+    @vehicles = Vehicle.includes(:reservations).order(:created_at)
 
     json_response(@vehicles)
   end
@@ -23,6 +23,12 @@ class VehiclesController < ApplicationController
     else
       json_response(@vehicle.errors.full_messages, :unprocessable_entity)
     end
+  end
+
+  def destroy
+    @vehicle.destroy
+
+    head :no_content
   end
 
   def pay

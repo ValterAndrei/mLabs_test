@@ -14,7 +14,7 @@ SimpleCov.start do
   ]
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'
-  minimum_coverage 90
+  minimum_coverage 80
   maximum_coverage_drop 2
 end
 
