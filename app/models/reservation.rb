@@ -12,7 +12,7 @@ class Reservation < ApplicationRecord
   delegate :plate, to: :vehicle
 
   def as_json(_options = {})
-    super(only: %i[code])
+    super only: %i[code]
   end
 
   def time # rubocop:disable Metrics/MethodLength
