@@ -15,24 +15,17 @@ class Reservation < ApplicationRecord
     super only: %i[code]
   end
 
-  def time # rubocop:disable Metrics/MethodLength
+  def time
     self.checkout ||= Time.zone.now
 
     duration = ActiveSupport::Duration
                .build(checkout - checkin)
                .parts
-               .slice(:days, :hours, :minutes)
+               .slice(:days, :hours, :minutes, :seconds)
 
-    case duration
-    in { days: Integer, hours: Integer, minutes: Integer }
-      "#{duration[:days]} days, #{duration[:hours]} hours and #{duration[:minutes]} minutes"
-    in { hours: Integer, minutes: Integer }
-      "#{duration[:hours]} hours and #{duration[:minutes]} minutes"
-    in { minutes: Integer }
-      "#{duration[:minutes]} minutes"
-    else
-      nil
-    end
+    duration.map do |k, v|
+      "#{v.round(1)} #{k.to_s.delete_suffix('s').pluralize(v)}"
+    end.to_sentence(words_connector: ', ', last_word_connector: ' e ')
   end
 
   private
