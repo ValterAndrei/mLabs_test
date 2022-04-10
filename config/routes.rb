@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # TODO: Refactor routes to correct resource names
   get    '/',                 to: 'vehicles#index'
   post   'parking',           to: 'vehicles#create'
@@ -7,5 +6,4 @@ Rails.application.routes.draw do
   delete 'parking/:plate',    to: 'vehicles#destroy'
   put    'parking/:code/pay', to: 'vehicles#pay'
   put    'parking/:code/out', to: 'vehicles#out'
-
 end
