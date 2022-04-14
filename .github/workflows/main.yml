@@ -53,7 +53,7 @@ jobs:
       env:
         RAILS_ENV: test
         DB_HOST: localhost
-      run: bin/rspec
+      run: bundle exec rspec
 
     - name: Upload coverage results    
       uses: actions/upload-artifact@master
