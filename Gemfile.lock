@@ -178,6 +178,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.10.0)
       parser (>= 3.0.1.1)
+    ruby-debug-ide (0.7.3)
+      rake (>= 0.8.1)
     ruby-progressbar (1.11.0)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
@@ -225,6 +227,7 @@ DEPENDENCIES
   rails-controller-testing
   rspec-rails (~> 4.0.1)
   rubocop (~> 1.8)
+  ruby-debug-ide
   shoulda-matchers
   simplecov
   spring
