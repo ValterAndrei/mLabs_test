@@ -23,3 +23,8 @@ services:
     image: postgres
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
+
+networks:
+  default:
+    external:
+      name: my-app
