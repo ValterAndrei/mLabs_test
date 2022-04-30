@@ -74,3 +74,11 @@ See [Parking Manager Front](https://github.com/ValterAndrei/parking_manager_fron
 
 ### Production
 [On heroku](https://parking-manager-front.herokuapp.com/)
+
+
+### Deploy
+```
+git remote add heroku https://git.heroku.com/parking-manager-back.git
+
+git push heroku main
+```
