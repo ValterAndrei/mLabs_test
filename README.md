@@ -65,7 +65,7 @@ docker-compose -f docker-compose.yml -f docker-compose.debug.yml up
 
 1. Up the project
 ```
-docker-compose run --service-ports web
+docker-compose run --rm --service-ports web
 ```
 
 ### Front-end
