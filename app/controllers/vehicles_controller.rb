@@ -15,11 +15,17 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.find_or_create_by!(plate: vehicle_params[:plate])
-                      .reservations.build(checkin: Time.zone.now)
+    @vehicle = Vehicle.find_or_initialize_by(plate: vehicle_params[:plate])
+    @vehicle.photo = vehicle_params[:photo] # blob signed_id
 
     if @vehicle.save
-      json_response(@vehicle, :created)
+      reservations = @vehicle.reservations.build(checkin: Time.zone.now)
+
+      if reservations.save
+        json_response(reservations, :created)
+      else
+        json_response(reservations.errors.full_messages, :unprocessable_entity)
+      end
     else
       json_response(@vehicle.errors.full_messages, :unprocessable_entity)
     end
@@ -63,7 +69,7 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:plate)
+    params.require(:vehicle).permit(:plate, :photo)
   end
 
   def check_vehicle

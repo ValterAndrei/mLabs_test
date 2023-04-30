@@ -74,7 +74,7 @@ RSpec.describe VehiclesController, type: :request do
 
         expect(response.body).not_to be_empty
         expect(JSON.parse(response.body)).to eq(
-          { 'message' => 'Validation failed: Plate with invalid format' }
+          ["Plate with invalid format"]
         )
       end
     end
