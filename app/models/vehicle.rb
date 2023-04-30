@@ -1,6 +1,8 @@
 class Vehicle < ApplicationRecord
   has_many :reservations, dependent: :destroy
 
+  has_one_attached :photo, dependent: :destroy
+
   validates :plate,
             plate: true,
             uniqueness: true
