@@ -14,7 +14,11 @@ RSpec.describe VehiclesController, type: :request do
       expect(response.body).not_to be_empty
       expect(JSON.parse(response.body)).to eq(
         [
-          { 'plate' => vehicle.plate, 'reservations' => [] }
+          {
+            'plate' => vehicle.plate,
+            'photo_url' => nil,
+            'reservations' => []
+          }
         ]
       )
     end
@@ -33,7 +37,11 @@ RSpec.describe VehiclesController, type: :request do
       it 'returns vehicles info' do
         expect(response.body).not_to be_empty
         expect(JSON.parse(response.body)).to eq(
-          { 'plate' => vehicle.plate, 'reservations' => [] }
+          {
+            'plate' => vehicle.plate,
+            'photo_url' => nil,
+            'reservations' => []
+          }
         )
       end
     end
